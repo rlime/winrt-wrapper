@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>c870696b-4078-4ed4-95d6-874e7baa355c</UniqueIdentifier>
+      <Extensions>ico;bmp;dlg;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;resw;resjson</Extensions>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{a2f40b7b-aa9d-4168-877f-1263386b5cc3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="generator-api.cpp" />
+    <ClCompile Include="Generated\Windows.UI.Xaml.i.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Windows.UI.Xaml.e.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="MainPage.cpp" />
+    <ClCompile Include="Generated\Object.i.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Windows.Foundation.i.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Windows.UI.Xaml.Markup.i.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Windows.UI.Xaml.Controls.i.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated\Windows.UI.Xaml.Controls.e.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Logo.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="SmallLogo.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="StoreLogo.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="SplashScreen.png">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="generator-api.h" />
+    <ClInclude Include="Generated\Windows.UI.Xaml.i.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated\Windows.UI.Xaml.e.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="MainPage.h" />
+    <ClInclude Include="Generated\Object.i.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated\Windows.ApplicationModel.Activation.Events.i.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated\Windows.Foundation.i.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated\Windows.UI.Xaml.Markup.i.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated\Windows.UI.Xaml.Controls.i.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated\Windows.UI.Xaml.Controls.e.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
