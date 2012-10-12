@@ -1,15 +1,16 @@
+#include "pch.h"
+
 #include <cassert>
-#include "Object.i.h"
-#include "generator-api.h"
+#include "Object.h"
+#include "../generator-api.h"
 
-namespace Import {
-
+/*
 Object::Object() 
-: _core(nullptr), _ref_count(1) 
+: inspectable_(nullptr), _ref_count(1) 
 {}
 
 Object::Object(IInspectable* core) 
-: _core(nullptr), _ref_count(1)
+: inspectable_(nullptr), _ref_count(1)
 {
 	Attach(core);	
 }
@@ -17,9 +18,9 @@ Object::Object(IInspectable* core)
 Object::~Object() 
 {
 	int dbg = 0;
-	if (_core) {
-		dbg = _core->Release();
-		_core = nullptr;
+	if (inspectable_) {
+		dbg = inspectable_->Release();
+		inspectable_ = nullptr;
 	}
 }
 
@@ -43,10 +44,10 @@ int Object::Release()
 
 void Object::Attach(IInspectable* core)
 {
-	assert(!_core);
-	_core = core;
+	assert(!inspectable_);
+	inspectable_ = core;
 	int dbg = 0;
-	if (_core) dbg = _core->AddRef();	
+	if (inspectable_) 
+		dbg = inspectable_->AddRef();	
 }
-
-}
+*/

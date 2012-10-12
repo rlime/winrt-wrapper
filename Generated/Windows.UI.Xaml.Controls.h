@@ -1,22 +1,22 @@
 #pragma once
 
-#include "Generated/Object.h"
-#include <Windows.UI.Xaml.Controls.h>
+#include "Windows.UI.Xaml.h"
+#include "Windows.UI.Xaml.e.h"
+
+#include <Windows.UI.Xaml.h>
 
 namespace Windows { namespace UI { namespace Xaml { namespace Controls {
-	class UserControl;
-}}}}
 
-namespace Export {
-namespace Windows { namespace UI { namespace Xaml { namespace Controls {
-
-	class ControlOverrides : 
-		public Microsoft::WRL::RuntimeClass<ABI::Windows::UI::Xaml::Controls::IControlOverrides>
+	//Control
+	class Control : public Windows::UI::Xaml::FrameworkElement
 	{
-		InspectableClass(L"Export.Windows.UI.Xaml.Controls.ControlOverrides", TrustLevel::BaseTrust)
-
 	public:
-		ControlOverrides(::Windows::UI::Xaml::Controls::UserControl* impl) : impl_(impl) {}
+		DECLARE_DEFAULT_INTERFACE(ABI::Windows::UI::Xaml::Controls::IControl)
+
+		Control(IInspectable* core);
+
+		bool IsEnabled();
+		void SetIsEnabled(bool e);
 
 		virtual HRESULT STDMETHODCALLTYPE OnPointerEntered( 
             /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e);
@@ -92,10 +92,62 @@ namespace Windows { namespace UI { namespace Xaml { namespace Controls {
                             
         virtual HRESULT STDMETHODCALLTYPE OnDrop( 
             /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IDragEventArgs *e);
-
-	private:
-		::Windows::UI::Xaml::Controls::UserControl* impl_;
 	};
 
+	//UserControl
+	class UserControl : public Control
+	{
+	public:
+		DECLARE_DEFAULT_INTERFACE(ABI::Windows::UI::Xaml::Controls::IUserControl)
 
-}}}}}
+		UserControl();
+		~UserControl();
+		void SetContent(const Object* pNode);
+
+	private:
+		Microsoft::WRL::ComPtr<ABI::Windows::UI::Xaml::Controls::IControlOverrides> _overrides;
+		Microsoft::WRL::ComPtr<ABI::Windows::UI::Xaml::Controls::IUserControl> _user_control;
+	};
+
+	//TextBox
+	class TextBox : public Control
+	{
+	public:
+		DECLARE_DEFAULT_INTERFACE(ABI::Windows::UI::Xaml::Controls::ITextBox)
+
+		TextBox(IInspectable* core);
+		std::wstring GetText();
+		void SetText(const std::wstring& text);
+	};
+
+	namespace Primitives {
+	
+		//ButtonBase
+		class ButtonBase : public Control
+		{
+		public:
+			DECLARE_DEFAULT_INTERFACE(ABI::Windows::UI::Xaml::Controls::Primitives::IButtonBase)
+
+			ButtonBase();
+			ButtonBase(IInspectable* core);				
+
+		public:
+			winrt_event<Export::Windows::UI::Xaml::RoutedEventHandler> Click;
+
+		protected:
+			EventRegistrationToken RegisterClickHandler(Export::Windows::UI::Xaml::RoutedEventHandler* handler);
+			void UnregisterClickHandler(EventRegistrationToken token);
+		};
+
+	}
+
+	//Button
+	class Button : public Primitives::ButtonBase
+	{
+	public:
+		DECLARE_DEFAULT_INTERFACE(ABI::Windows::UI::Xaml::Controls::IButton)
+
+		Button(IInspectable* core);
+	};
+
+}}}}

@@ -2,13 +2,11 @@
 #define GENERATOR_API_H
 
 #include <string>
-#include <windef.h>
-#include <hstring.h>
+#include <wrl/wrappers/corewrappers.h>
 
 
 namespace api {
 
-void InitWinRT();
 void CheckHR(HRESULT hr);
 
 //LiteralHSTRING

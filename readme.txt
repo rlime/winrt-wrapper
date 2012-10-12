@@ -1,3 +1,5 @@
+This is v2 of true c++ winrt wrapper. It works with most recent windows8
+
 Some technical observations
 ---------------------------
 
@@ -15,34 +17,22 @@ is technicaly not auto-generated, only copied)
 (with its interfaces, metadata etc.). It turned out that you don't need to do
 this to build winrt app. If you don't want to create component reusable from 
 other languages everything you need is to inherit your classes from 
-auto-generated classes. Events will work too.
+auto-generated classes. Events will work too. If you want to do this you need
+reverse generator which will generate WRL wrappers from your c++ classes.
 
-- currently there is a problem upon deleting UserControl which I temporary 
-solved by skipping Release call. One should investigate. It could be related to 
-my inability to create UserControl winrt object with overrides interface. But 
-it could also be something more general which I am missing here.
-
-- as it is written everytime when requesting winrt objects through some 
-interface (e.g FindName) or when using winrt_cast new allocation is needed. One
-should probably recycle objects created before and possibly return pointer to 
-the shared instance if requested more than once. AFAIK MFC took similar approach
-because it also made difference between Win32 objects and MFC-mirrored objects.
-
-- as it is written AddRefs and Release are called everytime winrt_ptr is copied.
-R-value references are your friend here.
+- Currently c++ wrapper classes are allocated but never freed. Cache for
+already allocated objects should be implemented so you minimize ammount
+of allocations. Keep user objects in memory is also important for managing
+events. Some objects can be created on stack like in RoutedEventHandler
 
 - at some places pointers to raw interfaces are transfered. It's because I 
 didn't have time and mood to wrap everything in c++ clases. Auto-generator will
 do.
 
-- events are limited to 1 handler. This can be easilly extended. Also in current
-implementation it's not really possible to disconnect event handler after the 
-c++ instance was discarded. This can be fixed by moving the event token directly
-to EventHandler winrt object or just reseting the callbacks in EventHandler.
-
 - properties can be easily added if needed as outlined in Object.i.h. In current
 implementation only Set/Get function pairs are implemented. Properties would be
 implemented on top of them.
 
-- asynchronous operations were not investigated. However I don't expect any
- problems here because PPL.next should come with some support for this.
+- asynchronous operations were not fully investigated. The problem here is
+PPL comes with support for IASyncOperation but it gets compiled only when 
+C++/CX is used. Can be implemented by passing std::function completion handlers.

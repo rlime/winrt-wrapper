@@ -1,328 +1,332 @@
+#include "pch.h"
 #include "Windows.UI.Xaml.Controls.e.h"
-#include "Windows.UI.Xaml.Controls.i.h"
+#include "Windows.UI.Xaml.Controls.h"
 
 namespace Export {
 namespace Windows { namespace UI { namespace Xaml { namespace Controls {
 
-HRESULT ControlOverrides::OnPointerEntered( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerEntered( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
 {
 	try {
-		_impl->OnPointerEntered(e);
+		impl_->OnPointerEntered(e);
 		return 0;
 	}
 	catch (...) {
 		return -1;
 	}	
-}
-                        
-HRESULT ControlOverrides::OnPointerPressed( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
-{
-	try {
-		_impl->OnPointerPressed(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-}
-                        
-HRESULT ControlOverrides::OnPointerMoved( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
-{
-	try {
-		_impl->OnPointerMoved(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-}
-                        
-HRESULT ControlOverrides::OnPointerReleased( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
-{
-	try {
-		_impl->OnPointerReleased(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-}
-                        
-HRESULT ControlOverrides::OnPointerExited( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
-{
-	try {
-		_impl->OnPointerExited(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnPointerCaptureLost( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
-{
-	try {
-		_impl->OnPointerCaptureLost(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnPointerCanceled( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
-{
-	try {
-		_impl->OnPointerCanceled(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnPointerWheelChanged( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IPointerEventArgs *e)
-{
-	try {
-		_impl->OnPointerWheelChanged(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnTapped( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::ITappedEventArgs *e)
-{
-	try {
-		_impl->OnTapped(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnDoubleTapped( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IDoubleTappedEventArgs *e)
-{
-	try {
-		_impl->OnDoubleTapped(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnHolding( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IHoldingEventArgs *e)
-{
-	try {
-		_impl->OnHolding(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnRightTapped( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IRightTappedEventArgs *e)
-{
-	try {
-		_impl->OnRightTapped(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnManipulationStarting( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IManipulationStartingEventArgs *e)
-{
-	try {
-		_impl->OnManipulationStarting(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnManipulationInertiaStarting( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IManipulationInertiaStartingEventArgs *e)
-{
-	try {
-		_impl->OnManipulationInertiaStarting(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnManipulationStarted( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IManipulationStartedEventArgs *e)
-{
-	try {
-		_impl->OnManipulationStarted(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnManipulationDelta( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IManipulationDeltaEventArgs *e)
-{
-	try {
-		_impl->OnManipulationDelta(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnManipulationCompleted( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IManipulationCompletedEventArgs *e)
-{
-	try {
-		_impl->OnManipulationCompleted(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnKeyUp( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IKeyEventArgs *e)
-{
-	try {
-		_impl->OnKeyUp(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnKeyDown( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::Input::IKeyEventArgs *e)
-{
-	try {
-		_impl->OnKeyDown(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnGotFocus( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::IRoutedEventArgs *e)
-{
-	try {
-		_impl->OnGotFocus(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnLostFocus( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::IRoutedEventArgs *e)
-{
-	try {
-		_impl->OnLostFocus(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnDragEnter( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::IDragEventArgs *e)
-{
-	try {
-		_impl->OnDragEnter(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnDragLeave( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::IDragEventArgs *e)
-{
-	try {
-		_impl->OnDragLeave(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnDragOver( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::IDragEventArgs *e)
-{
-	try {
-		_impl->OnDragOver(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
-}
-                        
-HRESULT ControlOverrides::OnDrop( 
-    /* [in] */ __RPC__in_opt ::Windows::UI::Xaml::IDragEventArgs *e)
-{
-	try {
-		_impl->OnDrop(e);
-		return 0;
-	}
-	catch (...) {
-		return -1;
-	}	
-
 }
 
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerPressed( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
+{
+	try {
+		impl_->OnPointerPressed(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerMoved( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
+{
+	try {
+		impl_->OnPointerMoved(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerReleased( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
+{
+	try {
+		impl_->OnPointerReleased(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerExited( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
+{
+	try {
+		impl_->OnPointerExited(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerCaptureLost( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
+{
+	try {
+		impl_->OnPointerCaptureLost(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerCanceled( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
+{
+	try {
+		impl_->OnPointerCanceled(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnPointerWheelChanged( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IPointerRoutedEventArgs *e)
+{
+	try {
+		impl_->OnPointerWheelChanged(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnTapped( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::ITappedRoutedEventArgs *e)
+{
+	try {
+		impl_->OnTapped(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnDoubleTapped( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IDoubleTappedRoutedEventArgs *e)
+{
+	try {
+		impl_->OnDoubleTapped(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnHolding( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IHoldingRoutedEventArgs *e)
+{
+	try {
+		impl_->OnHolding(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnRightTapped( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IRightTappedRoutedEventArgs *e)
+{
+	try {
+		impl_->OnRightTapped(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnManipulationStarting( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IManipulationStartingRoutedEventArgs *e)
+{
+	try {
+		impl_->OnManipulationStarting(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnManipulationInertiaStarting( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IManipulationInertiaStartingRoutedEventArgs *e)
+{
+	try {
+		impl_->OnManipulationInertiaStarting(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnManipulationStarted( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IManipulationStartedRoutedEventArgs *e)
+{
+	try {
+		impl_->OnManipulationStarted(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnManipulationDelta( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IManipulationDeltaRoutedEventArgs *e)
+{
+	try {
+		impl_->OnManipulationDelta(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnManipulationCompleted( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IManipulationCompletedRoutedEventArgs *e)
+{
+	try {
+		impl_->OnManipulationCompleted(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnKeyUp( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IKeyRoutedEventArgs *e)
+{
+	try {
+		impl_->OnKeyUp(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnKeyDown( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::Input::IKeyRoutedEventArgs *e)
+{
+	try {
+		impl_->OnKeyDown(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnGotFocus( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IRoutedEventArgs *e)
+{
+	try {
+		impl_->OnGotFocus(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnLostFocus( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IRoutedEventArgs *e)
+{
+	try {
+		impl_->OnLostFocus(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnDragEnter( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IDragEventArgs *e)
+{
+	try {
+		impl_->OnDragEnter(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnDragLeave( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IDragEventArgs *e)
+{
+	try {
+		impl_->OnDragLeave(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnDragOver( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IDragEventArgs *e)
+{
+	try {
+		impl_->OnDragOver(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                            
+HRESULT STDMETHODCALLTYPE ControlOverrides::OnDrop( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IDragEventArgs *e)
+{
+	try {
+		impl_->OnDrop(e);
+		return 0;
+	}
+	catch (...) {
+		return -1;
+	}	
+}
+
+                        
 }}}}}

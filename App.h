@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Generated/Windows.UI.Xaml.i.h"
-#include "MainPage.h"
+#include "Generated/Windows.UI.Xaml.h"
 
-class App : public Import::Windows::UI::Xaml::Application
+class App : public Windows::UI::Xaml::Application
 {
 public:
-	virtual void OnLaunched(Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs *args);
-
+	virtual void OnLaunched(ABI::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs *args);
+		
 protected:
-	winrt_ptr<MainPage> _main_page;
+	void OnButton();
 };

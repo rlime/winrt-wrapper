@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "generator-api.h"
 #include <winstring.h>
 #include <roapi.h>

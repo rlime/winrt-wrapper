@@ -1,63 +1,68 @@
 #pragma once
 
-#include "Object.i.h"
-#include <Windows.UI.Xaml-coretypes.h>
+#include "Object.h"
+#include <Windows.UI.Xaml.h>
 
-namespace Import {
 namespace Windows { namespace UI { namespace Xaml {
 	class Application;
-}}}}
+	class RoutedEventArgs;
+}}}
 
 namespace Export { 
 namespace Windows { namespace UI { namespace Xaml {
 
 	class ApplicationOverrides :
-		public Microsoft::WRL::RuntimeClass<::Windows::UI::Xaml::IApplicationOverrides>
+		public Microsoft::WRL::RuntimeClass<ABI::Windows::UI::Xaml::IApplicationOverrides>
 	{
 		InspectableClass(L"Export.Windows.UI.Xaml.ApplicationOverrides", TrustLevel::BaseTrust)
-		Import::Windows::UI::Xaml::Application* _impl;
+		::Windows::UI::Xaml::Application* impl_;
 
 	public:
-		ApplicationOverrides(Import::Windows::UI::Xaml::Application* impl) : _impl(impl) {}
+		ApplicationOverrides(::Windows::UI::Xaml::Application* impl) : impl_(impl) {}
 
 		//virtual void AddRef();
 		//virtual void Release();
 
-		HRESULT STDMETHODCALLTYPE OnInitialize();
-		HRESULT STDMETHODCALLTYPE OnActivated(::Windows::ApplicationModel::Activation::IActivatedEventArgs *args);
-		HRESULT STDMETHODCALLTYPE OnLaunched(::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs *args);
-		HRESULT STDMETHODCALLTYPE OnFileActivated(::Windows::ApplicationModel::Activation::IFileActivatedEventArgs *args);
-		HRESULT STDMETHODCALLTYPE OnSearchActivated(::Windows::ApplicationModel::Activation::ISearchActivatedEventArgs *args);
-		HRESULT STDMETHODCALLTYPE OnSharingTargetActivated(::Windows::ApplicationModel::Activation::IShareTargetActivatedEventArgs *args);
-		HRESULT STDMETHODCALLTYPE OnFilePickerActivated(::Windows::ApplicationModel::Activation::IFilePickerActivatedEventArgs *args);
+		virtual HRESULT STDMETHODCALLTYPE OnActivated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnLaunched( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnFileActivated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IFileActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnSearchActivated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::ISearchActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnShareTargetActivated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IShareTargetActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnFileOpenPickerActivated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IFileOpenPickerActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnFileSavePickerActivated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IFileSavePickerActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnCachedFileUpdaterActivated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::ICachedFileUpdaterActivatedEventArgs *args);
+                        
+        virtual HRESULT STDMETHODCALLTYPE OnWindowCreated( 
+            /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IWindowCreatedEventArgs *args);
+                        
 	};
 
 	class RoutedEventHandler :
 		public Microsoft::WRL::RuntimeClass<
 			Microsoft::WRL::RuntimeClassFlags<Microsoft::WRL::Delegate>, 
-			::Windows::UI::Xaml::IRoutedEventHandler
+			ABI::Windows::UI::Xaml::IRoutedEventHandler
 		>
 	{
 	public:
-		typedef std::function<void (const winrt_ptr<Import::Object>&, ::Windows::UI::Xaml::IRoutedEventArgs* args)> Callback_t;
-		typedef ExtractFuncType<Callback_t>::type FuncType_t;		
+		typedef std::function<void (Object*, ::Windows::UI::Xaml::RoutedEventArgs* args)> Callback_t;
+		std::vector<Callback_t> handlers_;
 
-	public:
-		RoutedEventHandler(Callback_t clb) : _callback(clb) {}
-
-		HRESULT STDMETHODCALLTYPE Invoke(IInspectable* sender, ::Windows::UI::Xaml::IRoutedEventArgs* args)
-		{
-			try {
-				_callback(Import::Create<Import::Object>(sender), args);
-				return 0;
-			}
-			catch (...) {
-				return -1;
-			}
-		}
-
-	private:
-		Callback_t _callback;
+		HRESULT STDMETHODCALLTYPE Invoke(IInspectable* sender, ABI::Windows::UI::Xaml::IRoutedEventArgs* args);
 	};
 
 }}}}

@@ -1,5 +1,6 @@
+#include "pch.h"
 #include "Windows.UI.Xaml.e.h"
-#include "Windows.UI.Xaml.i.h"
+#include "Windows.UI.Xaml.h"
 
 namespace Export {
 namespace Windows { namespace UI { namespace Xaml {
@@ -14,10 +15,16 @@ void ApplicationOverrides::Release()
 	int count = IApplicationOverrides::Release();
 }*/
 
-HRESULT ApplicationOverrides::OnInitialize()
+//------------------------------------------------------------------------------------------
+// ApplicationOverrides
+//------------------------------------------------------------------------------------------
+
+
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnActivated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IActivatedEventArgs *args)
 {
 	try {
-		_impl->OnInitialize();
+		impl_->OnActivated(args);
 		return 0;
 	}
 	catch (...) {
@@ -25,10 +32,11 @@ HRESULT ApplicationOverrides::OnInitialize()
 	}
 }
 
-HRESULT ApplicationOverrides::OnActivated(::Windows::ApplicationModel::Activation::IActivatedEventArgs *args)
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnLaunched( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs *args)
 {
 	try {
-		_impl->OnActivated(args);
+		impl_->OnLaunched(args);
 		return 0;
 	}
 	catch (...) {
@@ -36,10 +44,11 @@ HRESULT ApplicationOverrides::OnActivated(::Windows::ApplicationModel::Activatio
 	}
 }
 
-HRESULT ApplicationOverrides::OnLaunched(::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs *args)
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnFileActivated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IFileActivatedEventArgs *args)
 {
 	try {
-		_impl->OnLaunched(args);
+		impl_->OnFileActivated(args);
 		return 0;
 	}
 	catch (...) {
@@ -47,10 +56,11 @@ HRESULT ApplicationOverrides::OnLaunched(::Windows::ApplicationModel::Activation
 	}
 }
 
-HRESULT ApplicationOverrides::OnFileActivated(::Windows::ApplicationModel::Activation::IFileActivatedEventArgs *args)
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnSearchActivated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::ISearchActivatedEventArgs *args)
 {
 	try {
-		_impl->OnFileActivated(args);
+		impl_->OnSearchActivated(args);
 		return 0;
 	}
 	catch (...) {
@@ -58,10 +68,11 @@ HRESULT ApplicationOverrides::OnFileActivated(::Windows::ApplicationModel::Activ
 	}
 }
 
-HRESULT ApplicationOverrides::OnSearchActivated(::Windows::ApplicationModel::Activation::ISearchActivatedEventArgs *args)
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnShareTargetActivated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IShareTargetActivatedEventArgs *args)
 {
 	try {
-		_impl->OnSearchActivated(args);
+		impl_->OnShareTargetActivated(args);
 		return 0;
 	}
 	catch (...) {
@@ -69,10 +80,11 @@ HRESULT ApplicationOverrides::OnSearchActivated(::Windows::ApplicationModel::Act
 	}
 }
 
-HRESULT ApplicationOverrides::OnSharingTargetActivated(::Windows::ApplicationModel::Activation::IShareTargetActivatedEventArgs *args)
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnFileOpenPickerActivated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IFileOpenPickerActivatedEventArgs *args)
 {
 	try {
-		_impl->OnSharingTargetActivated(args);
+		impl_->OnFileOpenPickerActivated(args);
 		return 0;
 	}
 	catch (...) {
@@ -80,14 +92,59 @@ HRESULT ApplicationOverrides::OnSharingTargetActivated(::Windows::ApplicationMod
 	}
 }
 
-HRESULT ApplicationOverrides::OnFilePickerActivated(::Windows::ApplicationModel::Activation::IFilePickerActivatedEventArgs *args)
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnFileSavePickerActivated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::IFileSavePickerActivatedEventArgs *args)
 {
 	try {
-		_impl->OnFilePickerActivated(args);
+		impl_->OnFileSavePickerActivated(args);
 		return 0;
 	}
 	catch (...) {
 		return  -1;
+	}
+}
+
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnCachedFileUpdaterActivated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::ApplicationModel::Activation::ICachedFileUpdaterActivatedEventArgs *args)
+{
+	try {
+		impl_->OnCachedFileUpdaterActivated(args);
+		return 0;
+	}
+	catch (...) {
+		return  -1;
+	}
+}
+
+HRESULT STDMETHODCALLTYPE ApplicationOverrides::OnWindowCreated( 
+    /* [in] */ __RPC__in_opt ABI::Windows::UI::Xaml::IWindowCreatedEventArgs *args)
+{
+	try {
+		impl_->OnWindowCreated(args);
+		return 0;
+	}
+	catch (...) {
+		return  -1;
+	}
+}          
+
+//------------------------------------------------------------------------------------------
+// RoutedEventHandler
+//------------------------------------------------------------------------------------------
+
+HRESULT STDMETHODCALLTYPE RoutedEventHandler::Invoke(IInspectable* sender, ABI::Windows::UI::Xaml::IRoutedEventArgs* args)
+{
+	try {
+		Object* pSender = Create<Object>(sender);
+				
+		::Windows::UI::Xaml::RoutedEventArgs Args(args);
+
+		for (Callback_t& clb : handlers_) 
+			clb(pSender, &Args);
+		return 0;
+	}
+	catch (...) {
+		return -1;
 	}
 }
 

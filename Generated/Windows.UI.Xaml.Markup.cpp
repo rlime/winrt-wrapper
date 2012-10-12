@@ -1,20 +1,20 @@
-#include "Windows.UI.Xaml.Markup.i.h"
-#include "generator-api.h"
-#include <Windows.UI.Xaml-coretypes.h>
+#include "pch.h"
+#include "Windows.UI.Xaml.Markup.h"
 
 using namespace Microsoft::WRL;
-using namespace Windows::UI::Xaml::Markup;
+using namespace Microsoft::WRL::Wrappers;
 
-namespace Import {
+using namespace ABI::Windows::UI::Xaml::Markup;
+
 namespace Windows { namespace UI { namespace Xaml { namespace Markup {
 
 //------------------------------------------------------------------------------------------
 // XamlReader
 //------------------------------------------------------------------------------------------
 
-IMPLEMENT_CORE_TYPE(XamlReader)
+IMPLEMENT_DEFAULT_INTERFACE(XamlReader)
 
-winrt_ptr<Import::Object> XamlReader::Load(const std::wstring& xaml)
+Object* XamlReader::Load(const std::wstring& xaml)
 {
 	ComPtr<IXamlReaderStatics> pFactory;
 	api::CheckHR(::Windows::Foundation::GetActivationFactory(
@@ -23,7 +23,7 @@ winrt_ptr<Import::Object> XamlReader::Load(const std::wstring& xaml)
 	ComPtr<IInspectable> pContent;
 	api::CheckHR(pFactory->Load(api::ProperHSTRING(xaml), &pContent));
 	
-	return Import::Create<Import::Object>(pContent.Get());
+	return Create<Object>(pContent.Get());
 }
 
-}}}}}
+}}}}
